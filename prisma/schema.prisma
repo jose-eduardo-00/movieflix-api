@@ -15,12 +15,12 @@ model Genre {
   @@map("genres")
 }
 
-model language {
+model Language {
   id     Int      @id @default(autoincrement())
   name   String?  @db.VarChar(100)
   movies Movie[]
 
-  @@map("Languages")
+  @@map("languages")
 }
 
 model Movie {
@@ -31,7 +31,7 @@ model Movie {
   language_id  Int?
   oscar_count  Int?
   genres       Genre?    @relation(fields: [genre_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_genre")
-  languages    language? @relation(fields: [language_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_language")
+  languages    Language? @relation(fields: [language_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_language")
   
   @@map("movies")
 }
